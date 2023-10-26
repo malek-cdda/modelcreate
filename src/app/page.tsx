@@ -79,13 +79,13 @@ export default function Home() {
         position: { x: i, y: d },
         style: {
           width: 370,
-          height: 940,
+          height: 1290,
         },
       };
       n++;
       i = i + 400;
       if (n % 4 == 0) {
-        d = d + 970;
+        d = d + 1390;
         i = 0;
       }
 
@@ -96,23 +96,29 @@ export default function Home() {
   });
 
   let k = 5;
+  let c = 30;
   // console.log(cus);
   const initialDatas: any = cus.map((item: any, index: any) => {
     let newValue;
     const newData = {
       ...item,
       id: index.toString() + "a",
-
       newTypes: item?.type,
-      data: { label: item?.type },
-      position: { x: 30, y: k },
+      data: {
+        label: !item?.reference_field
+          ? item?.verbose_name
+          : item.reference_field,
+      },
+      position: { x: c, y: k },
       parentNode: item?.newRef,
       extent: "parent",
     };
     if (item?.newRef !== cus[index + 1]?.newRef) {
       k = 5;
+      c = 30;
     } else {
-      k = k + 48;
+      c = c + 10;
+      k = k + 80;
     }
 
     // k = k + 40;
