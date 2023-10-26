@@ -1,0 +1,989 @@
+{
+  "admin": [
+    {
+      "name": "LogEntry",
+      "fields": {
+        "id": {
+          "type": "AutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "action_time": {
+          "type": "DateTimeField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "action time",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        },
+        "user": {
+          "type": "ForeignKey",
+          "reference_field": "User",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "user",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        },
+        "content_type": {
+          "type": "ForeignKey",
+          "reference_field": "ContentType",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "content type",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        },
+        "object_id": {
+          "type": "TextField",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "object id",
+          "help_text": "",
+          "editable": true,
+          "db_index": false,
+          "max_length": null
+        },
+        "object_repr": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "object repr",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 200,
+          "choices": null
+        },
+        "action_flag": {
+          "type": "PositiveSmallIntegerField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "action flag",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "change_message": {
+          "type": "TextField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "change message",
+          "help_text": "",
+          "editable": true,
+          "db_index": false,
+          "max_length": null
+        }
+      }
+    }
+  ],
+  "auth": [
+    {
+      "name": "Permission",
+      "fields": {
+        "group": {
+          "type": "ManyToManyField",
+          "reference_field": "Group",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "user_accounts": {
+          "type": "ManyToManyField",
+          "reference_field": "User",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "AutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 255,
+          "choices": null
+        },
+        "content_type": {
+          "type": "ForeignKey",
+          "reference_field": "ContentType",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "content type",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        },
+        "codename": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "codename",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        }
+      }
+    },
+    {
+      "name": "Group",
+      "fields": {
+        "user_accounts": {
+          "type": "ManyToManyField",
+          "reference_field": "User",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "AutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": true,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 150,
+          "choices": null
+        },
+        "permissions": {
+          "type": "ManyToManyField",
+          "reference_field": "Permission",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "permissions",
+          "help_text": "",
+          "editable": true,
+          "db_index": false
+        }
+      }
+    }
+  ],
+  "contenttypes": [
+    {
+      "name": "ContentType",
+      "fields": {
+        "logentry": {
+          "type": "ForeignKey",
+          "reference_field": "LogEntry",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "permission": {
+          "type": "ForeignKey",
+          "reference_field": "Permission",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "AutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "app_label": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "app label",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        },
+        "model": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "python model class name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        }
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "name": "Session",
+      "fields": {
+        "session_key": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "session key",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 40,
+          "choices": null
+        },
+        "session_data": {
+          "type": "TextField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "session data",
+          "help_text": "",
+          "editable": true,
+          "db_index": false,
+          "max_length": null
+        },
+        "expire_date": {
+          "type": "DateTimeField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "expire date",
+          "help_text": "",
+          "editable": true,
+          "db_index": true
+        }
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "name": "User",
+      "fields": {
+        "logentry": {
+          "type": "ForeignKey",
+          "reference_field": "LogEntry",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "course": {
+          "type": "ForeignKey",
+          "reference_field": "Course",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "password": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "password",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 128,
+          "choices": null
+        },
+        "last_login": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "last login",
+          "help_text": "",
+          "editable": true,
+          "db_index": false
+        },
+        "is_superuser": {
+          "type": "BooleanField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "verbose_name": "superuser status",
+          "help_text": "Designates that this user has all permissions without explicitly assigning them.",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "email": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": true,
+          "verbose_name": "email",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 254,
+          "choices": null
+        },
+        "phone": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": true,
+          "verbose_name": "phone",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 128,
+          "choices": null
+        },
+        "first_name": {
+          "type": "CharField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "first name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 255,
+          "choices": null
+        },
+        "last_name": {
+          "type": "CharField",
+          "blank": false,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "last name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 255,
+          "choices": null
+        },
+        "picture": {
+          "type": "CharField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "picture",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 200,
+          "choices": null
+        },
+        "date_joined": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "date joined",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        },
+        "is_active": {
+          "type": "BooleanField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "verbose_name": "is active",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "is_admin": {
+          "type": "BooleanField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "verbose_name": "is admin",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "is_staff": {
+          "type": "BooleanField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "verbose_name": "is staff",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "role": {
+          "type": "ForeignKey",
+          "reference_field": "Role",
+          "blank": false,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "role",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        },
+        "revisions": {
+          "type": "JSONField",
+          "blank": false,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "revisions",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": null,
+          "choices": null
+        },
+        "groups": {
+          "type": "ManyToManyField",
+          "reference_field": "Group",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "groups",
+          "help_text": "",
+          "editable": true,
+          "db_index": false
+        },
+        "user_permissions": {
+          "type": "ManyToManyField",
+          "reference_field": "Permission",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "user permissions",
+          "help_text": "",
+          "editable": true,
+          "db_index": false
+        }
+      }
+    }
+  ],
+  "permission": [
+    {
+      "name": "Role",
+      "fields": {
+        "user": {
+          "type": "ForeignKey",
+          "reference_field": "User",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": true,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        },
+        "page": {
+          "type": "ArrayField",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "page",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": null,
+          "choices": null
+        },
+        "component": {
+          "type": "ArrayField",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "component",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": null,
+          "choices": null
+        },
+        "api": {
+          "type": "ArrayField",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "api",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": null,
+          "choices": null
+        },
+        "created_at": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "created at",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        },
+        "updated_at": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "updated at",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        }
+      }
+    }
+  ],
+  "studio": [
+    {
+      "name": "Message2",
+      "fields": {
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "message": {
+          "type": "TextField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "message",
+          "help_text": "",
+          "editable": true,
+          "db_index": false,
+          "max_length": null
+        },
+        "created_at": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "created at",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        },
+        "updated_at": {
+          "type": "DateTimeField",
+          "blank": true,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "updated at",
+          "help_text": "",
+          "editable": false,
+          "db_index": false
+        },
+        "is_read": {
+          "type": "BooleanField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "verbose_name": "is read",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        }
+      }
+    },
+    {
+      "name": "Publisher",
+      "fields": {
+        "author": {
+          "type": "ForeignKey",
+          "reference_field": "Author",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        }
+      }
+    },
+    {
+      "name": "Author",
+      "fields": {
+        "book": {
+          "type": "ForeignKey",
+          "reference_field": "Book",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        },
+        "publisher": {
+          "type": "ForeignKey",
+          "reference_field": "Publisher",
+          "blank": true,
+          "null": true,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "publisher",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        }
+      }
+    },
+    {
+      "name": "Book",
+      "fields": {
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "title": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "title",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 200,
+          "choices": null
+        },
+        "author": {
+          "type": "ForeignKey",
+          "reference_field": "Author",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "author",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        }
+      }
+    },
+    {
+      "name": "Student",
+      "fields": {
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        },
+        "courses": {
+          "type": "ManyToManyField",
+          "reference_field": "Course",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "courses",
+          "help_text": "",
+          "editable": true,
+          "db_index": false
+        }
+      }
+    },
+    {
+      "name": "Course",
+      "fields": {
+        "student": {
+          "type": "ManyToManyField",
+          "reference_field": "Student",
+          "null": true,
+          "editable": false,
+          "parent_link": false
+        },
+        "id": {
+          "type": "BigAutoField",
+          "blank": true,
+          "null": false,
+          "primary_key": true,
+          "unique": true,
+          "verbose_name": "ID",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": false
+        },
+        "name": {
+          "type": "CharField",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "name",
+          "help_text": "",
+          "editable": true,
+          "auto_created": false,
+          "db_column": null,
+          "db_index": false,
+          "max_length": 100,
+          "choices": null
+        },
+        "user": {
+          "type": "ForeignKey",
+          "reference_field": "User",
+          "blank": false,
+          "null": false,
+          "primary_key": false,
+          "unique": false,
+          "verbose_name": "user",
+          "help_text": "",
+          "editable": true,
+          "db_column": null,
+          "db_index": true
+        }
+      }
+    }
+  ]
+}

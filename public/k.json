@@ -1,0 +1,42 @@
+[
+  {
+    "id": "xx",
+    "type": "group",
+    "data": {
+      "label": "sdfdsf"
+    },
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "style": {
+      "width": 170,
+      "height": 140
+    }
+  },
+  {
+    "id": "5a",
+    "type": "input",
+    "data": {
+      "label": "child node 1"
+    },
+    "position": {
+      "x": 10,
+      "y": 10
+    },
+    "parentNode": "xx",
+    "extent": "parent"
+  },
+  {
+    "id": "2a",
+    "data": {
+      "label": "child node 2"
+    },
+    "position": {
+      "x": 10,
+      "y": 90
+    },
+    "parentNode": "xx",
+    "extent": "parent"
+  }
+]
